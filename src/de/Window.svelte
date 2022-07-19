@@ -15,8 +15,9 @@
 		prevX = e.clientX;
 		prevY = e.clientY;
 
-		self.style.top = self.offsetTop - Y + 'px';
-		self.style.left = self.offsetLeft - X + 'px';
+		self.style.top =
+			Math.min(window.innerHeight - 72 - 375, Math.max(20, self.offsetTop - Y)) + 'px';
+		self.style.left = Math.max(0, Math.min(window.innerWidth - 342, self.offsetLeft)) - X + 'px';
 	};
 
 	function closeWindow(e) {
@@ -40,8 +41,6 @@
 		prevX = e.clientX;
 		prevY = e.clientY;
 
-		let z = e.target.parentElement.parentElement.style.zIndex || '0';
-		e.target.parentElement.parentElement.style.zIndex = (parseInt(z) + 1).toString();
 		window.addEventListener('mousemove', drag);
 		window.addEventListener('mouseup', mouseUp);
 	}
@@ -50,16 +49,30 @@
 		window.removeEventListener('mousemove', drag);
 		window.removeEventListener('mouseup', mouseUp);
 	}
+
+	function zUp(e) {
+		let z = e.target.parentElement.parentElement.style.zIndex || '0';
+		e.target.parentElement.parentElement.style.zIndex = (parseInt(z) + 1).toString();
+	}
+
+	function zDown(e) {
+		let z = e.target.parentElement.parentElement.style.zIndex || '0';
+		e.target.parentElement.parentElement.style.zIndex = (parseInt(z) - 1).toString();
+	}
 </script>
 
-<main on:mouseup={mouseUp} bind:this={self}>
-	<div id="topbar" on:mousedown={mouseDown} on:mouseup={mouseUp}>
-		<button on:click={closeWindow}> X </button>
-		<h3>
+<main on:mouseup={mouseUp} bind:this={self} class=" border-2 border-gray-300">
+	<div id="topbar" on:mousedown={mouseDown} on:mouseup={mouseUp} class="max-h-fit">
+		<button on:click={closeWindow} class=" w-9 mr-1"> X </button>
+		<h4>
 			{title}
-		</h3>
+		</h4>
+		<button on:click={zUp}> Up </button>
+		<button on:click={zDown}> Down </button>
 	</div>
-	<slot />
+	<div class="h-[340px] m-0 overflow-y-scroll">
+		<slot />
+	</div>
 </main>
 
 <style>
@@ -74,11 +87,11 @@
 		display: flex;
 		background-color: blue;
 		width: 100%;
-		height: 24px;
+		height: 8%;
 		cursor: move;
 	}
 
-	#topbar > h3 {
+	#topbar > h4 {
 		-webkit-touch-callout: none;
 		-webkit-user-select: none;
 		-khtml-user-select: none;
@@ -89,20 +102,11 @@
 	}
 
 	main {
-		-webkit-touch-callout: none;
-		-webkit-user-select: none;
-		-khtml-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		-o-user-select: none;
-		user-select: none;
 		position: absolute;
 		width: 340px;
-		height: 340px;
 		background-color: antiquewhite;
 		border-style: groove;
 		border-color: bisque;
-		overflow-y: scroll;
 		overflow-x: hidden;
 	}
 </style>

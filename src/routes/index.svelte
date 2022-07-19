@@ -1,8 +1,9 @@
 <script>
 	import { windows } from '../stores';
 
-	import Taskman from '../lib/Taskman.svelte';
-	import Window from '../lib/Window.svelte';
+	import Taskman from '../de/Taskman.svelte';
+	import Window from '../de/Window.svelte';
+	import Topview from '../de/Topview.svelte';
 
 	let apps;
 
@@ -10,6 +11,7 @@
 </script>
 
 <main>
+	<Topview />
 	{#each apps as App}
 		<Window title={App.title}>
 			<App.content />

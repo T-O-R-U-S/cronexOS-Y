@@ -1,8 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 * {
 	box-sizing: border-box;
 	margin: 0;
+	font-family: 'VT323', monospace;
+	image-rendering: pixelated;
+	border-style: groove;
+	border-color: rgb(218, 193, 163);
+}
+
+h1 {
+	@apply text-7xl;
+}
+
+h2 {
+	@apply text-5xl;
+}
+
+h3 {
+	@apply text-3xl;
+}
+
+h4 {
+	@apply text-xl;
+}
+
+h5 {
+	@apply text-base
+}
+
+h6 {
+	@apply text-sm
+}
+
+a {
+	@apply text-blue-600 underline;
 }
 
 body {
 	background-color: rgb(169, 203, 233);
+	background-image: url(/clouds.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-size: inherit;
+}
+
+button {
+	@apply border-4;
+	background-color: rgb(254, 218, 174);
+	border-color: rgb(218, 193, 163);
+	border-style: groove;
+}
+
+select {
+	@apply border-4;
+	background-color: rgb(254, 218, 174);
+}
+
+input {
+	@apply border-4;
+	background-color: rgb(254, 218, 174);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+}
+
+input[type=number] {
+	-moz-appearance: textfield;
+	appearance: textfield;
+	margin: 0;
 }
