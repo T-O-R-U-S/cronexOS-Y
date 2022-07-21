@@ -28,9 +28,17 @@
 		{#if background_input == 'colour'}
 			<h4>HSV</h4>
 			<div class="flex w-full">
-				<input class="w-1/3" type="number" name="h" id="h" bind:value={hue} />
-				<input class="w-1/3" type="number" name="s" id="s" bind:value={saturation} />
-				<input class="w-1/3" type="number" name="v" id="v" bind:value={val} />
+				<input class="w-1/3" min="0" max="100" type="number" name="h" id="h" bind:value={hue} />
+				<input
+					class="w-1/3"
+					min="0"
+					max="100"
+					type="number"
+					name="s"
+					id="s"
+					bind:value={saturation}
+				/>
+				<input class="w-1/3" min="0" max="100" type="number" name="v" id="v" bind:value={val} />
 			</div>
 			<div
 				class="w-full text-center"

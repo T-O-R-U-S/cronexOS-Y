@@ -9,6 +9,12 @@
 	border-color: rgb(218, 193, 163);
 }
 
+ul, ol {
+	list-style-type: square;
+	list-style-position: inside;
+	padding: 5px;
+}
+
 h1 {
 	@apply text-7xl;
 }

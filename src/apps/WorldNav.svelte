@@ -3,13 +3,13 @@
 	import { createWindow } from '../create_window';
 	import Artist from './Artist.svelte';
 	import Settings from './Settings.svelte';
-	import Weeble from './Weeble.svelte';
+	import Wobbl from './Wobbl.svelte';
 
 	let entries = {
 		ScribblePad: TextField,
 		Artist: Artist,
 		Settings: Settings,
-		Weeble: Weeble
+		Wobbl: Wobbl
 	};
 </script>
 
@@ -25,7 +25,7 @@
 	</header>
 </main>
 
-<style>
+<style lang="postcss">
 	button {
 		@apply col-span-1 border-none bg-white;
 	}

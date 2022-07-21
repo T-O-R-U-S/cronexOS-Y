@@ -5,19 +5,24 @@
 
 	export const id = gen_id();
 
-	let self, drag;
+	// The top-level element.
+	let self;
 
+	// Used in the drag function
 	let X, Y, prevX, prevY;
 
-	drag = (e) => {
+	// Happens while topbar is held down.
+	const drag = (e) => {
 		X = prevX - e.clientX;
 		Y = prevY - e.clientY;
 		prevX = e.clientX;
 		prevY = e.clientY;
 
 		self.style.top =
-			Math.min(window.innerHeight - 72 - 375, Math.max(20, self.offsetTop - Y)) + 'px';
-		self.style.left = Math.max(0, Math.min(window.innerWidth - 342, self.offsetLeft)) - X + 'px';
+			Math.min(window.innerHeight - 72 - self.offsetHeight, Math.max(20, self.offsetTop - Y)) +
+			'px';
+		self.style.left =
+			Math.min(window.innerWidth - self.offsetWidth, Math.max(0, self.offsetLeft)) - X + 'px';
 	};
 
 	function closeWindow(e) {
